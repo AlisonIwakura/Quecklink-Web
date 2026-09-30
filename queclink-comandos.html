@@ -1,0 +1,3116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Queclink GL33 / GL33CG • Painel</title>
+
+<style>
+:root{
+  --bg:#070707;
+  --bg2:#0b0b0b;
+  --card:#111111;
+  --card2:#151515;
+  --input:#090909;
+
+  --line:#292929;
+  --line2:#363636;
+
+  --yellow:#ffd400;
+  --yellow2:#ffbd00;
+  --yellow-soft:rgba(255,212,0,.10);
+
+  --text:#f5f5f5;
+  --muted:#8d8d8d;
+  --muted2:#666;
+
+  --success:#35d47a;
+  --danger:#ff5757;
+  --info:#6ea8ff;
+
+  --log:#030303;
+  --logtext:#d7eadc;
+
+  --radius:13px;
+  --shadow:0 10px 35px rgba(0,0,0,.38);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255,212,0,.075),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255,212,0,.035),
+      transparent 28%
+    ),
+    var(--bg);
+
+  color:var(--text);
+
+  font:
+    14px/1.55
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+main{
+  width:min(1120px,calc(100% - 28px));
+  margin:0 auto;
+  padding:28px 0 60px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:24px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.brand-icon{
+  width:48px;
+  height:48px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:13px;
+
+  background:var(--yellow);
+  color:#080808;
+
+  font-size:21px;
+  font-weight:900;
+
+  box-shadow:
+    0 0 30px rgba(255,212,0,.16);
+}
+
+h1{
+  margin:0;
+
+  font-size:24px;
+  line-height:1.15;
+  letter-spacing:-.5px;
+}
+
+.sub{
+  margin:5px 0 0;
+
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================
+   CONNECTION
+========================= */
+
+.connection-badge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:8px 13px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  background:rgba(255,255,255,.025);
+
+  color:var(--muted);
+
+  white-space:nowrap;
+}
+
+.connection-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#555;
+}
+
+.connection-badge.connected{
+  color:var(--success);
+
+  border-color:
+    rgba(53,212,122,.3);
+}
+
+.connection-badge.connected
+.connection-dot{
+  background:var(--success);
+
+  box-shadow:
+    0 0 10px rgba(53,212,122,.65);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+  position:relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.025),
+      transparent 45%
+    ),
+    var(--card);
+
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+
+  padding:19px;
+
+  margin-bottom:14px;
+
+  box-shadow:var(--shadow);
+}
+
+.section-head{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  margin-bottom:16px;
+}
+
+.section-number{
+  width:29px;
+  height:29px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:8px;
+
+  background:var(--yellow-soft);
+  color:var(--yellow);
+
+  font-size:12px;
+  font-weight:800;
+}
+
+h2{
+  margin:0;
+
+  font-size:15px;
+  font-weight:700;
+}
+
+.section-description{
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin:
+    -8px
+    0
+    16px
+    40px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  align-items:end;
+}
+
+label{
+  display:flex;
+  flex-direction:column;
+
+  gap:6px;
+
+  min-width:150px;
+
+  color:#aaa;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+input,
+select{
+  height:40px;
+
+  padding:0 11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:9px;
+
+  outline:none;
+
+  background:var(--input);
+  color:var(--text);
+
+  transition:
+    .18s ease;
+}
+
+input::placeholder{
+  color:#555;
+}
+
+input:hover,
+select:hover{
+  border-color:var(--line2);
+}
+
+input:focus,
+select:focus{
+  border-color:var(--yellow);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,212,0,.08);
+}
+
+select{
+  min-width:155px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+  min-height:40px;
+
+  padding:0 14px;
+
+  border:
+    1px solid
+    var(--line2);
+
+  border-radius:9px;
+
+  background:#171717;
+  color:#eee;
+
+  font-weight:600;
+
+  transition:
+    background .16s ease,
+    border-color .16s ease,
+    color .16s ease,
+    transform .12s ease,
+    box-shadow .16s ease;
+}
+
+button:hover:not(:disabled){
+  background:#202020;
+
+  border-color:#4a4a4a;
+
+  transform:translateY(-1px);
+}
+
+button:active:not(:disabled){
+  transform:translateY(0);
+}
+
+button.p{
+  background:var(--yellow);
+  color:#080808;
+
+  border-color:var(--yellow);
+
+  box-shadow:
+    0 5px 18px
+    rgba(255,212,0,.12);
+}
+
+button.p:hover:not(:disabled){
+  background:#ffe04a;
+
+  border-color:#ffe04a;
+
+  box-shadow:
+    0 7px 22px
+    rgba(255,212,0,.18);
+}
+
+button.d{
+  color:#ff7777;
+
+  border-color:
+    rgba(255,82,82,.35);
+
+  background:
+    rgba(255,82,82,.045);
+}
+
+button.d:hover:not(:disabled){
+  background:
+    rgba(255,82,82,.1);
+
+  border-color:
+    rgba(255,82,82,.6);
+}
+
+button:disabled{
+  opacity:.35;
+
+  cursor:not-allowed;
+
+  transform:none;
+}
+
+:focus-visible{
+  outline:
+    2px solid
+    var(--yellow);
+
+  outline-offset:3px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.st{
+  margin-left:auto;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.st b{
+  color:var(--yellow);
+}
+
+/* =========================
+   NOTES
+========================= */
+
+.note{
+  margin:9px 0 0;
+
+  color:#777;
+
+  font-size:12px;
+}
+
+.err{
+  color:var(--danger)!important;
+}
+
+.ok{
+  color:var(--success)!important;
+
+  font-weight:700;
+}
+
+/* =========================
+   QUICK GRID
+========================= */
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:8px;
+}
+
+.grid button{
+  min-height:46px;
+
+  text-align:left;
+
+  display:flex;
+  align-items:center;
+
+  gap:8px;
+
+  padding:0 12px;
+
+  background:#151515;
+
+  border-color:#292929;
+
+  font-size:12px;
+}
+
+.grid button::before{
+  content:"›";
+
+  color:var(--yellow);
+
+  font-size:18px;
+
+  font-weight:800;
+}
+
+.grid button:hover:not(:disabled){
+  background:#1d1d1d;
+
+  border-color:
+    rgba(255,212,0,.4);
+}
+
+/* =========================
+   COMMAND
+========================= */
+
+.command-label{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:8px;
+
+  color:#777;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.8px;
+}
+
+pre{
+  margin:0;
+
+  padding:14px;
+
+  background:#080808;
+
+  border:
+    1px solid
+    #242424;
+
+  border-radius:10px;
+
+  color:#e7e7e7;
+
+  white-space:pre-wrap;
+
+  word-break:break-all;
+
+  font:
+    12px/1.55
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  min-height:56px;
+}
+
+#out{
+  border-left:
+    3px solid
+    var(--yellow);
+}
+
+/* =========================
+   LOG
+========================= */
+
+#log{
+  height:250px;
+
+  overflow:auto;
+
+  background:var(--log);
+
+  color:var(--logtext);
+
+  border-color:#202020;
+
+  font-size:12px;
+}
+
+#log::-webkit-scrollbar{
+  width:7px;
+  height:7px;
+}
+
+#log::-webkit-scrollbar-thumb{
+  background:#333;
+  border-radius:10px;
+}
+
+#log::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+/* =========================
+   DEVICE INFO
+========================= */
+
+.kv{
+  display:grid;
+
+  grid-template-columns:
+    150px 1fr;
+
+  gap:1px 16px;
+
+  margin:16px 0 0;
+
+  background:#202020;
+
+  border:
+    1px solid
+    #202020;
+
+  border-radius:10px;
+
+  overflow:hidden;
+}
+
+.kv dt,
+.kv dd{
+  margin:0;
+
+  padding:10px 12px;
+
+  background:#111;
+}
+
+.kv dt{
+  color:#777;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.4px;
+}
+
+.kv dd{
+  color:#ddd;
+
+  word-break:break-all;
+}
+
+/* =========================
+   CONFIG
+========================= */
+
+.cfg{
+  margin-top:15px;
+}
+
+.cfg h3{
+  margin:15px 0 7px;
+
+  color:#888;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:.6px;
+}
+
+/* =========================
+   ACTION GROUP
+========================= */
+
+.action-group{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:9px;
+}
+
+/* =========================
+   SERIAL INDICATOR
+========================= */
+
+.serial-state{
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.serial-led{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#555;
+}
+
+.serial-state.active{
+  color:var(--success);
+}
+
+.serial-state.active
+.serial-led{
+  background:var(--success);
+
+  box-shadow:
+    0 0 9px
+    rgba(53,212,122,.6);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:650px){
+
+  main{
+    width:
+      min(
+        100% - 20px,
+        1120px
+      );
+
+    padding-top:20px;
+  }
+
+  .header{
+    flex-direction:column;
+
+    align-items:flex-start;
+  }
+
+  .connection-badge{
+    width:100%;
+
+    justify-content:center;
+  }
+
+  section{
+    padding:16px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .row{
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+  label{
+    width:100%;
+  }
+
+  input,
+  select,
+  button{
+    width:100%;
+  }
+
+  .st{
+    margin-left:0;
+  }
+
+  .kv{
+    grid-template-columns:1fr;
+  }
+
+  .kv dt{
+    padding-bottom:3px;
+  }
+
+  .kv dd{
+    padding-top:3px;
+
+    padding-bottom:12px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="brand">
+
+    <div class="brand-icon">
+      Q
+    </div>
+
+    <div>
+
+      <h1>
+        Queclink GL33 / GL33CG
+      </h1>
+
+      <p class="sub">
+        Painel de configuração e comunicação serial
+      </p>
+
+    </div>
+
+  </div>
+
+  <div
+    class="connection-badge"
+    id="connectionBadge"
+  >
+
+    <span
+      class="connection-dot"
+    ></span>
+
+    <span id="connectionText">
+      Desconectado
+    </span>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     APARELHO
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      01
+    </div>
+
+    <h2>
+      Aparelho
+    </h2>
+
+  </div>
+
+  <p class="section-description">
+    Selecione o modelo, senha e plataforma utilizada pelo dispositivo.
+  </p>
+
+  <div class="row">
+
+    <label>
+
+      Modelo
+
+      <select id="model">
+
+        <option value="gl33cg">
+          GL33CG (4G)
+        </option>
+
+        <option value="gl33">
+          GL33 (2G)
+        </option>
+
+      </select>
+
+    </label>
+
+
+    <label>
+
+      Senha do aparelho
+
+      <input
+        id="pw"
+        value="gl33cg"
+        size="10"
+        autocomplete="off"
+        spellcheck="false"
+      >
+
+    </label>
+
+
+    <label>
+
+      Plataforma
+
+      <select id="plat">
+
+        <option value="sitacom">
+          Sitacom
+        </option>
+
+        <option value="datora">
+          Datora
+        </option>
+
+      </select>
+
+    </label>
+
+  </div>
+
+  <p class="note">
+
+    A senha é utilizada nos comandos do aparelho.
+    Você pode editar caso o equipamento utilize outra senha.
+
+  </p>
+
+</section>
+
+
+<!-- =========================
+     SERIAL
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      02
+    </div>
+
+    <h2>
+      Conexão serial
+    </h2>
+
+  </div>
+
+  <p class="section-description">
+    Conecte o GL33/GL33CG pela porta COM para ler configurações ou enviar comandos.
+  </p>
+
+  <div class="row">
+
+    <label>
+
+      Velocidade
+
+      <select id="baud">
+
+        <option>
+          115200
+        </option>
+
+        <option>
+          9600
+        </option>
+
+        <option>
+          57600
+        </option>
+
+        <option>
+          38400
+        </option>
+
+      </select>
+
+    </label>
+
+
+    <button
+      id="conn"
+      class="p"
+    >
+      Conectar
+    </button>
+
+
+    <button
+      id="disc"
+      disabled
+    >
+      Desconectar
+    </button>
+
+
+    <span
+      class="st"
+      id="status"
+    >
+      Desconectado
+    </span>
+
+  </div>
+
+  <p
+    class="note"
+    id="supp"
+  ></p>
+
+</section>
+
+
+<!-- =========================
+     DEVICE
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      03
+    </div>
+
+    <h2>
+      Dispositivo conectado
+    </h2>
+
+  </div>
+
+  <p class="section-description">
+    Identifique o aparelho e leia as configurações atuais.
+  </p>
+
+  <div class="row">
+
+    <span
+      id="devst"
+      class="note"
+      style="margin:0"
+    >
+      Conecte a porta serial para identificar o aparelho.
+    </span>
+
+
+    <button
+      id="reread"
+      class="st"
+      style="margin-left:auto"
+      disabled
+    >
+      ↻ Ler configurações
+    </button>
+
+  </div>
+
+
+  <dl
+    class="kv"
+    id="devinfo"
+  ></dl>
+
+
+  <div
+    class="row"
+    style="margin-top:15px"
+  >
+
+    <label
+      style="flex:1;min-width:200px"
+    >
+
+      Comando manual
+
+      <input
+        id="man"
+        placeholder="AT+QPROTVER?"
+        autocomplete="off"
+        spellcheck="false"
+      >
+
+    </label>
+
+
+    <button
+      id="mansend"
+      disabled
+    >
+      Enviar
+    </button>
+
+  </div>
+
+
+  <div
+    class="cfg"
+    id="cfgbox"
+  ></div>
+
+</section>
+
+
+<!-- =========================
+     QUICK ACTIONS
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      04
+    </div>
+
+    <h2>
+      Ações rápidas
+    </h2>
+
+  </div>
+
+  <p class="section-description">
+    Comandos frequentes para operação e manutenção do equipamento.
+  </p>
+
+  <div
+    class="grid"
+    id="quick"
+  ></div>
+
+</section>
+
+
+<!-- =========================
+     TP
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      05
+    </div>
+
+    <h2>
+      Intervalo de posição
+    </h2>
+
+  </div>
+
+  <p class="section-description">
+    Defina a frequência de envio das posições.
+  </p>
+
+  <div class="row">
+
+    <label>
+
+      Intervalo
+
+      <select id="tp">
+
+        <option value="60">
+          60 segundos
+        </option>
+
+        <option value="300">
+          5 minutos
+        </option>
+
+        <option value="600">
+          10 minutos
+        </option>
+
+        <option value="900">
+          15 minutos
+        </option>
+
+        <option value="1800">
+          30 minutos
+        </option>
+
+        <option
+          value="3600"
+          selected
+        >
+          60 minutos
+        </option>
+
+      </select>
+
+    </label>
+
+
+    <button
+      data-act="tp"
+      class="p"
+    >
+      Gerar comando
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SERVER
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      06
+    </div>
+
+    <h2>
+      Servidor e correções
+    </h2>
+
+  </div>
+
+  <p class="section-description">
+    Configure a plataforma selecionada ou aplique o kit de correção.
+  </p>
+
+  <div class="action-group">
+
+    <button data-act="mig">
+      ⇄ Migrar para plataforma
+    </button>
+
+    <button
+      data-act="kit"
+      class="p"
+    >
+      ⚙ Aplicar kit de correção
+    </button>
+
+  </div>
+
+  <p class="note">
+
+    O kit envia vários comandos em sequência,
+    com pausa de 1,5 segundo entre eles.
+
+  </p>
+
+</section>
+
+
+<!-- =========================
+     COMMAND
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      07
+    </div>
+
+    <h2>
+      Comando gerado
+    </h2>
+
+  </div>
+
+
+  <div class="command-label">
+
+    <span>
+      Terminal
+    </span>
+
+    <span>
+      Queclink AT Command
+    </span>
+
+  </div>
+
+
+  <pre id="out">Nenhum comando gerado.</pre>
+
+
+  <div
+    class="row"
+    style="margin-top:12px"
+  >
+
+    <button id="copy">
+      ⧉ Copiar
+    </button>
+
+
+    <button
+      id="send"
+      class="p"
+      disabled
+    >
+      ▶ Enviar pela serial
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LOG
+========================= -->
+
+<section>
+
+  <div class="section-head">
+
+    <div class="section-number">
+      08
+    </div>
+
+    <h2>
+      Registro de comunicação
+    </h2>
+
+  </div>
+
+
+  <pre id="log"></pre>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const $ = id =>
+  document.getElementById(id);
+
+
+/* =========================================================
+   CONFIGURAÇÃO
+========================================================= */
+
+const P = () =>
+  $('pw').value.trim();
+
+
+const SITA_SRI =
+  'AT+GTSRI={p},4,,12,driver.sitacom.com.br,6300,0.0.0.0,0,,,,,,,,,,,,,,,FFFF$';
+
+
+const DATORA_SRI =
+  'AT+GTSRI={p},3,,12,goldensat.stc.srv.br,8284,0.0.0.0,0,,0,1,,0,,FFFF$';
+
+
+/* =========================================================
+   AÇÕES RÁPIDAS
+========================================================= */
+
+const QUICK = [
+
+  [
+    'Posição avulsa',
+    'AT+GTRTO={p},1,,0,,,,FFFF$'
+  ],
+
+  [
+    'Reboot',
+    'AT+GTRTO={p},3,,,,,,FFFF$'
+  ],
+
+  [
+    'Ler bateria',
+    'AT+GTCFG={p},,,,,,,,,,,,,,,,,,,,,4F,,,FFFF$'
+  ],
+
+  [
+    'Entrar em emergência',
+    'AT+GTRTO={p},10,1,,,,,FFFF$'
+  ],
+
+  [
+    'Sair da emergência',
+    'AT+GTRTO={p},10,0,,,,,FFFF$'
+  ],
+
+  [
+    'Limpar buffer (DELBUF)',
+    'AT+GTRTO={p},D,,,,,,FFFF$'
+  ],
+
+  [
+    'Desligar aparelho',
+    'AT+GTRTO={p},5,,,,,,FFFF$',
+    true
+  ]
+
+];
+
+
+/* =========================================================
+   KIT SITACOM
+========================================================= */
+
+const KIT_SITA = [
+
+  'AT+GTBSI={p},eseye1,user,pass,,,,0,,,FFFF$',
+
+  'AT+GTSRI={p},4,,11,driver.sitacom.com.br,6300,0.0.0.0,0,,2,1,,0,,30,0.0.0.0,0.0.0.0,FFFF$',
+
+  'AT+GTQSS={p},eseye1,user,pass,4,,11,driver.sitacom.com.br,6300,0.0.0.0,0,,2,1,,,,,FFFF$',
+
+  'AT+GTCFG={p},gl33cg,GL33CG,,,,,1F,2,,4823,,2,0,300,0,,,,4005,0,0F,12,FFFF$',
+
+  'AT+GTNMD={p},0,2,3,2,900,900,,,,,,,,FFFF$',
+
+  'AT+GTDOG={p},1,,5,0500,,1,,,60,60,30,,,,FFFF$',
+
+  'AT+GTFRI={p},1,0,,0,0000,0000,60,60,,,,,,,,,,FFFF$',
+
+  'AT+GTRTO={p},D,,,,,,FFFF$'
+
+];
+
+
+/* =========================================================
+   KIT DATORA
+========================================================= */
+
+const KIT_DATORA = [
+
+  KIT_SITA[0],
+
+  DATORA_SRI,
+
+  ...KIT_SITA.slice(3)
+
+];
+
+
+/* =========================================================
+   ESTADO SERIAL
+========================================================= */
+
+let queue = [];
+
+let port = null;
+
+let writer = null;
+
+let reading = false;
+
+let reader = null;
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const sleep = ms =>
+  new Promise(resolve =>
+    setTimeout(resolve,ms)
+  );
+
+
+const fill = text =>
+  text.replaceAll(
+    '{p}',
+    P()
+  );
+
+
+/* =========================================================
+   LOG
+========================================================= */
+
+function log(message,className){
+
+  const element =
+    $('log');
+
+  const line =
+    document.createElement('span');
+
+  if(className)
+    line.className =
+      className;
+
+  line.textContent =
+    '[' +
+    new Date()
+      .toLocaleTimeString('pt-BR') +
+    '] ' +
+    message +
+    '\n';
+
+  element.appendChild(line);
+
+  element.scrollTop =
+    element.scrollHeight;
+
+}
+
+
+/* =========================================================
+   OUTPUT
+========================================================= */
+
+function setOut(commands){
+
+  queue =
+    commands.map(fill);
+
+  $('out').textContent =
+    queue.join('\n');
+
+  $('send').disabled =
+    !port ||
+    !queue.length;
+
+}
+
+
+/* =========================================================
+   CONNECTION UI
+========================================================= */
+
+function setConnectedUI(connected){
+
+  const badge =
+    $('connectionBadge');
+
+  const text =
+    $('connectionText');
+
+  if(connected){
+
+    badge.classList.add(
+      'connected'
+    );
+
+    text.textContent =
+      'Conectado';
+
+  }else{
+
+    badge.classList.remove(
+      'connected'
+    );
+
+    text.textContent =
+      'Desconectado';
+
+  }
+
+}
+
+
+/* =========================================================
+   MODEL
+========================================================= */
+
+$('model').onchange = () => {
+
+  $('pw').value =
+    $('model').value;
+
+};
+
+
+/* =========================================================
+   QUICK COMMANDS
+========================================================= */
+
+$('quick').innerHTML = '';
+
+
+QUICK.forEach(
+  ([name,command,danger]) => {
+
+    const button =
+      document.createElement('button');
+
+    button.textContent =
+      name;
+
+    if(danger)
+      button.className =
+        'd';
+
+    button.onclick = () => {
+
+      if(
+        danger &&
+        !confirm(
+          'Este comando DESLIGA o aparelho. ' +
+          'Talvez não seja possível religá-lo sem acesso físico. ' +
+          'Gerar mesmo assim?'
+        )
+      )
+        return;
+
+      setOut([
+        command
+      ]);
+
+    };
+
+    $('quick')
+      .appendChild(button);
+
+  }
+);
+
+
+/* =========================================================
+   TP
+========================================================= */
+
+document
+  .querySelector(
+    '[data-act="tp"]'
+  )
+  .onclick = () => {
+
+    const seconds =
+      $('tp').value;
+
+    setOut([
+
+      `AT+GTFRI={p},1,0,,0,0000,0000,${seconds},${seconds},,,,,,,,,,FFFF$`
+
+    ]);
+
+  };
+
+
+/* =========================================================
+   MIGRATION
+========================================================= */
+
+document
+  .querySelector(
+    '[data-act="mig"]'
+  )
+  .onclick = () => {
+
+    setOut([
+
+      $('plat').value === 'datora'
+        ? DATORA_SRI
+        : SITA_SRI
+
+    ]);
+
+  };
+
+
+/* =========================================================
+   KIT
+========================================================= */
+
+document
+  .querySelector(
+    '[data-act="kit"]'
+  )
+  .onclick = () => {
+
+    setOut(
+
+      $('plat').value === 'datora'
+        ? KIT_DATORA
+        : KIT_SITA
+
+    );
+
+  };
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+$('copy').onclick =
+  async () => {
+
+    if(!queue.length)
+      return;
+
+    try{
+
+      await navigator
+        .clipboard
+        .writeText(
+          queue.join('\n')
+        );
+
+      log(
+        'Comando copiado.',
+        'ok'
+      );
+
+    }catch(error){
+
+      log(
+        'Não foi possível copiar: ' +
+        error.message,
+        'err'
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   WEB SERIAL SUPPORT
+========================================================= */
+
+if(!('serial' in navigator)){
+
+  $('conn').disabled =
+    true;
+
+  $('supp').textContent =
+    'Este navegador não suporta Web Serial. ' +
+    'Use Chrome ou Edge. A página deve estar em HTTPS ' +
+    'ou ser aberta localmente.';
+
+  $('supp').className =
+    'note err';
+
+}
+
+
+/* =========================================================
+   DEVICE
+========================================================= */
+
+const MODELS = {
+
+  '802002':
+    'GL33 (2G)',
+
+  '80200A':
+    'GL33CG (4G)'
+
+};
+
+
+const LABELS = {
+
+  QPROTVER:
+    'Versão do protocolo (QPROTVER)',
+
+  GTCFG:
+    'Geral (GTCFG)',
+
+  GTSRI:
+    'Servidor (GTSRI)',
+
+  GTFRI:
+    'Intervalo de posição (GTFRI)',
+
+  GTBSI:
+    'APN (GTBSI)',
+
+  GTNMD:
+    'Modo noturno (GTNMD)',
+
+  GTDOG:
+    'Watchdog (GTDOG)',
+
+  GTQSS:
+    'Rede rápida (GTQSS)',
+
+  Manual:
+    'Comando manual'
+
+};
+
+
+let cur = null;
+
+let results = {};
+
+let allText = '';
+
+let got = 0;
+
+
+/* =========================================================
+   SERIAL TRANSMISSION
+========================================================= */
+
+async function tx(command,addCRLF=false){
+
+  if(!writer)
+    throw new Error(
+      'A porta serial não está pronta.'
+    );
+
+  const text =
+    addCRLF &&
+    !command.endsWith('$')
+      ? command + '\r\n'
+      : command;
+
+  await writer.write(
+
+    new TextEncoder()
+      .encode(text)
+
+  );
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function esc(text){
+
+  return text.replace(
+    /[&<>]/g,
+    character => ({
+
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;'
+
+    }[character])
+
+  );
+
+}
+
+
+/* =========================================================
+   SERIAL INPUT
+========================================================= */
+
+/*
+ * IMPORTANTE:
+ *
+ * Queclink normalmente termina as respostas com "$".
+ *
+ * Exemplo:
+ *
+ * +RESP:GTFRI,...FFFF$
+ *
+ * O código antigo só procurava CR/LF.
+ *
+ * Por isso a resposta podia ficar presa no buffer.
+ *
+ * Agora aceitamos:
+ *
+ *   $
+ *   \r
+ *   \n
+ */
+
+function lineIn(line){
+
+  line =
+    line.trim();
+
+  if(!line)
+    return;
+
+
+  log(
+    '← ' + line
+  );
+
+
+  /*
+   * Eco do comando enviado.
+   *
+   * Só ignoramos uma linha AT que
+   * não seja uma resposta terminada
+   * por "$".
+   */
+
+  if(
+    /^AT/i.test(line) &&
+    !line.includes('$')
+  ){
+
+    return;
+
+  }
+
+
+  got++;
+
+  allText +=
+    line + '\n';
+
+
+  if(cur){
+
+    if(!results[cur])
+      results[cur] = [];
+
+    results[cur].push(
+      line
+    );
+
+  }
+
+
+  renderDev();
+
+}
+
+
+/* =========================================================
+   RECONHECIMENTO
+========================================================= */
+
+function recognized(){
+
+  if(
+    (results.QPROTVER || [])
+      .some(
+        value =>
+          !/^(OK|ERROR)$/i.test(
+            value
+          )
+      )
+  ){
+
+    return true;
+
+  }
+
+
+  if(
+    /^\+/m.test(
+      allText
+    )
+  ){
+
+    return true;
+
+  }
+
+
+  if(
+    /\b802002\b/i.test(
+      allText
+    ) ||
+    /\b80200A\b/i.test(
+      allText
+    )
+  ){
+
+    return true;
+
+  }
+
+
+  if(
+    /GL33CG/i.test(
+      allText
+    ) ||
+    /\bGL33\b/i.test(
+      allText
+    )
+  ){
+
+    return true;
+
+  }
+
+
+  return false;
+
+}
+
+
+/* =========================================================
+   DEVICE RENDER
+========================================================= */
+
+function renderDev(){
+
+  const info =
+    $('devinfo');
+
+  const config =
+    $('cfgbox');
+
+
+  if(!got){
+
+    info.innerHTML = '';
+
+    config.innerHTML = '';
+
+    return;
+
+  }
+
+
+  const ok =
+    recognized();
+
+
+  if(ok){
+
+    $('devst').innerHTML =
+      '<span class="ok">● Dispositivo reconhecido.</span>';
+
+  }
+
+
+  let modelo =
+    'Não identificado';
+
+
+  for(
+    const key in MODELS
+  ){
+
+    if(
+      allText
+        .toUpperCase()
+        .includes(key)
+    ){
+
+      modelo =
+        MODELS[key];
+
+      break;
+
+    }
+
+  }
+
+
+  if(
+    modelo ===
+    'Não identificado'
+  ){
+
+    if(
+      /gl33cg/i.test(
+        allText
+      )
+    ){
+
+      modelo =
+        'GL33CG (4G)';
+
+    }else if(
+      /\bgl33\b/i.test(
+        allText
+      )
+    ){
+
+      modelo =
+        'GL33 (2G)';
+
+    }
+
+  }
+
+
+  /*
+   * Procura IMEI de 15 dígitos.
+   */
+
+  const imeiMatch =
+    allText.match(
+      /\b\d{15}\b/
+    );
+
+
+  const imei =
+    imeiMatch
+      ? imeiMatch[0]
+      : 'Não informado';
+
+
+  /*
+   * Identificação da plataforma.
+   */
+
+  let platform =
+    'Não identificada';
+
+
+  if(
+    /sitacom/i.test(
+      allText
+    )
+  ){
+
+    platform =
+      'Sitacom';
+
+  }else if(
+    /goldensat/i.test(
+      allText
+    )
+  ){
+
+    platform =
+      'Datora';
+
+  }
+
+
+  if(ok){
+
+    info.innerHTML = `
+
+      <dt>Modelo</dt>
+      <dd>${esc(modelo)}</dd>
+
+      <dt>IMEI</dt>
+      <dd>${esc(imei)}</dd>
+
+      <dt>Plataforma</dt>
+      <dd>${esc(platform)}</dd>
+
+    `;
+
+  }else{
+
+    info.innerHTML = '';
+
+  }
+
+
+  let html =
+    '<h3>Respostas do aparelho</h3>';
+
+
+  Object.keys(
+    results
+  ).forEach(
+    key => {
+
+      html += `
+
+        <h3>
+          ${esc(
+            LABELS[key] || key
+          )}
+        </h3>
+
+        <pre>${esc(
+          results[key].join('\n')
+        )}</pre>
+
+      `;
+
+    }
+  );
+
+
+  config.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   READ LOOP
+========================================================= */
+
+async function readLoop(){
+
+  if(
+    !port ||
+    !port.readable
+  ){
+
+    return;
+
+  }
+
+
+  /*
+   * Garante que não exista
+   * outro reader ativo.
+   */
+
+  if(reading)
+    return;
+
+
+  reader =
+    port.readable.getReader();
+
+
+  const decoder =
+    new TextDecoder();
+
+
+  let buffer = '';
+
+  reading = true;
+
+
+  try{
+
+    while(
+      reading &&
+      port
+    ){
+
+      const {
+        value,
+        done
+      } =
+        await reader.read();
+
+
+      if(done)
+        break;
+
+
+      if(!value)
+        continue;
+
+
+      /*
+       * Decodificação incremental.
+       */
+
+      buffer +=
+        decoder.decode(
+          value,
+          {
+            stream:true
+          }
+        );
+
+
+      /*
+       * Queclink usa "$".
+       *
+       * Também aceitamos CR/LF.
+       */
+
+      let match;
+
+
+      while(
+        (
+          match =
+            buffer.match(
+              /[$\r\n]/
+            )
+        )
+      ){
+
+        const position =
+          match.index;
+
+        const delimiter =
+          match[0];
+
+
+        let line =
+          buffer.slice(
+            0,
+            position
+          );
+
+
+        buffer =
+          buffer.slice(
+            position +
+            delimiter.length
+          );
+
+
+        line =
+          line.trim();
+
+
+        if(!line)
+          continue;
+
+
+        /*
+         * Preserva o "$" porque
+         * ele faz parte do protocolo.
+         */
+
+        if(
+          delimiter === '$'
+        ){
+
+          line += '$';
+
+        }
+
+
+        lineIn(
+          line
+        );
+
+      }
+
+
+      /*
+       * Segurança contra buffer
+       * crescendo indefinidamente.
+       */
+
+      if(
+        buffer.length >
+        10000
+      ){
+
+        log(
+          'Buffer serial excedeu 10 KB. Dados incompletos descartados.',
+          'err'
+        );
+
+        buffer = '';
+
+      }
+
+    }
+
+  }catch(error){
+
+    if(reading){
+
+      log(
+        'Erro na leitura serial: ' +
+        error.message,
+        'err'
+      );
+
+    }
+
+  }finally{
+
+    reading = false;
+
+    try{
+
+      reader.releaseLock();
+
+    }catch(error){}
+
+    reader = null;
+
+  }
+
+}
+
+
+/* =========================================================
+   READ CONFIG
+========================================================= */
+
+async function readCfg(){
+
+  if(!port)
+    return;
+
+
+  /*
+   * Limpa leitura anterior.
+   */
+
+  cur = null;
+
+  results = {};
+
+  allText = '';
+
+  got = 0;
+
+
+  renderDev();
+
+
+  $('devst').textContent =
+    'Consultando o aparelho...';
+
+
+  $('reread').disabled =
+    true;
+
+
+  /*
+   * Comandos de consulta.
+   *
+   * QPROTVER é consultado primeiro.
+   */
+
+  const password =
+    P();
+
+
+  const sequence = [
+
+    [
+      'QPROTVER',
+      'AT+QPROTVER?'
+    ],
+
+    [
+      'GTCFG',
+      `AT+GTCFG?"${password}"`
+    ],
+
+    [
+      'GTSRI',
+      `AT+GTSRI?"${password}"`
+    ],
+
+    [
+      'GTFRI',
+      `AT+GTFRI?"${password}"`
+    ],
+
+    [
+      'GTBSI',
+      `AT+GTBSI?"${password}"`
+    ],
+
+    [
+      'GTNMD',
+      `AT+GTNMD?"${password}"`
+    ],
+
+    [
+      'GTDOG',
+      `AT+GTDOG?"${password}"`
+    ],
+
+    [
+      'GTQSS',
+      `AT+GTQSS?"${password}"`
+    ]
+
+  ];
+
+
+  try{
+
+    for(
+      const [
+        key,
+        command
+      ]
+      of sequence
+    ){
+
+      if(!port)
+        return;
+
+
+      cur =
+        key;
+
+
+      log(
+        '→ ' + command
+      );
+
+
+      /*
+       * Comandos de consulta recebem CRLF.
+       */
+
+      await tx(
+        command,
+        true
+      );
+
+
+      /*
+       * Aguarda o aparelho responder.
+       */
+
+      await sleep(
+        1000
+      );
+
+    }
+
+  }catch(error){
+
+    log(
+      'Falha na leitura: ' +
+      error.message,
+      'err'
+    );
+
+  }
+
+
+  cur = null;
+
+
+  if(!port)
+    return;
+
+
+  $('reread').disabled =
+    false;
+
+
+  const values =
+    Object.values(
+      results
+    ).flat();
+
+
+  const onlyOK =
+    values.length > 0 &&
+    values.every(
+      value =>
+        /^OK$/i.test(
+          value
+        )
+    );
+
+
+  if(!got){
+
+    $('devst').innerHTML =
+
+      '<span class="err">' +
+      '● Porta aberta, mas o aparelho não respondeu. ' +
+      'Confira a velocidade, alimentação do aparelho e a COM selecionada.' +
+      '</span>';
+
+  }else if(!recognized()){
+
+    $('devst').innerHTML =
+
+      '<span class="err">' +
+      '● O aparelho respondeu, mas não foi possível identificar o modelo. ' +
+      (onlyOK
+        ? 'Foram recebidos somente "OK". '
+        : '') +
+      'Veja o registro abaixo.' +
+      '</span>';
+
+  }else if(
+    /mimaerror/i.test(
+      allText
+    )
+  ){
+
+    $('devst').innerHTML =
+
+      '<span class="ok">' +
+      '● Dispositivo reconhecido.' +
+      '</span> ' +
+
+      '<span class="err">' +
+      'Senha recusada: corrija a senha do aparelho.' +
+      '</span>';
+
+  }else{
+
+    $('devst').innerHTML =
+
+      '<span class="ok">' +
+      '● Dispositivo reconhecido e leitura concluída.' +
+      '</span>';
+
+  }
+
+}
+
+
+/* =========================================================
+   REREAD
+========================================================= */
+
+$('reread').onclick =
+  readCfg;
+
+
+/* =========================================================
+   MANUAL
+========================================================= */
+
+$('mansend').onclick =
+  async () => {
+
+    const command =
+      $('man').value.trim();
+
+
+    if(
+      !port ||
+      !command
+    ){
+
+      return;
+
+    }
+
+
+    cur =
+      'Manual';
+
+
+    log(
+      '→ ' + command
+    );
+
+
+    try{
+
+      /*
+       * Comando manual recebe CRLF,
+       * exceto se já terminar em "$".
+       */
+
+      await tx(
+        command,
+        true
+      );
+
+    }catch(error){
+
+      log(
+        'Falha: ' +
+        error.message,
+        'err'
+      );
+
+    }
+
+
+    /*
+     * Mantém a janela de captura
+     * aberta por 3 segundos.
+     */
+
+    setTimeout(
+      () => {
+
+        if(cur === 'Manual')
+          cur = null;
+
+      },
+      3000
+    );
+
+  };
+
+
+/* =========================================================
+   CONNECT
+========================================================= */
+
+$('conn').onclick =
+  async () => {
+
+    try{
+
+      /*
+       * Seleção da COM.
+       */
+
+      port =
+        await navigator
+          .serial
+          .requestPort();
+
+
+      /*
+       * Abre a porta.
+       */
+
+      await port.open({
+
+        baudRate:
+          parseInt(
+            $('baud').value,
+            10
+          ),
+
+        dataBits:8,
+
+        stopBits:1,
+
+        parity:'none',
+
+        flowControl:'none'
+
+      });
+
+
+      /*
+       * Writer separado do reader.
+       */
+
+      writer =
+        port.writable
+          .getWriter();
+
+
+      $('status').innerHTML =
+        'Conectado a <b>' +
+        $('baud').value +
+        ' bps</b>';
+
+
+      $('conn').disabled =
+        true;
+
+
+      $('disc').disabled =
+        false;
+
+
+      $('send').disabled =
+        !queue.length;
+
+
+      setConnectedUI(
+        true
+      );
+
+
+      log(
+        'Porta aberta.',
+        'ok'
+      );
+
+
+      /*
+       * Inicia leitura ANTES
+       * de mandar os comandos.
+       */
+
+      readLoop();
+
+
+      $('reread').disabled =
+        false;
+
+
+      $('mansend').disabled =
+        false;
+
+
+      /*
+       * Pequeno intervalo para
+       * estabilizar a COM.
+       */
+
+      setTimeout(
+        () => {
+
+          if(port)
+            readCfg();
+
+        },
+        600
+      );
+
+
+    }catch(error){
+
+      /*
+       * Se a conexão falhar,
+       * limpa o estado.
+       */
+
+      port = null;
+
+      writer = null;
+
+      reading = false;
+
+
+      setConnectedUI(
+        false
+      );
+
+
+      log(
+
+        'Falha ao conectar: ' +
+        error.message +
+        '. Confira se o aparelho aparece como COM no Windows e se nenhum outro programa está usando a porta.',
+
+        'err'
+
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+async function close(){
+
+  /*
+   * Primeiro para o loop.
+   */
+
+  reading = false;
+
+
+  /*
+   * Cancela o reader para
+   * liberar a porta imediatamente.
+   */
+
+  if(reader){
+
+    try{
+
+      await reader.cancel();
+
+    }catch(error){}
+
+  }
+
+
+  try{
+
+    if(writer){
+
+      try{
+
+        writer.releaseLock();
+
+      }catch(error){}
+
+      writer = null;
+
+    }
+
+
+    if(port){
+
+      try{
+
+        await port.close();
+
+      }catch(error){
+
+        log(
+          'Erro ao fechar: ' +
+          error.message,
+          'err'
+        );
+
+      }
+
+    }
+
+  }catch(error){
+
+    log(
+      'Erro ao fechar: ' +
+      error.message,
+      'err'
+    );
+
+  }
+
+
+  port = null;
+
+  reader = null;
+
+  reading = false;
+
+
+  got = 0;
+
+  results = {};
+
+  allText = '';
+
+  renderDev();
+
+
+  $('reread').disabled =
+    true;
+
+
+  $('mansend').disabled =
+    true;
+
+
+  $('devst').textContent =
+    'Conecte a porta serial para identificar o aparelho.';
+
+
+  $('status').textContent =
+    'Desconectado';
+
+
+  $('conn').disabled =
+    false;
+
+
+  $('disc').disabled =
+    true;
+
+
+  $('send').disabled =
+    true;
+
+
+  setConnectedUI(
+    false
+  );
+
+
+  log(
+    'Porta fechada.'
+  );
+
+}
+
+
+/* =========================================================
+   DISCONNECT
+========================================================= */
+
+$('disc').onclick =
+  close;
+
+
+if(
+  'serial' in navigator
+){
+
+  navigator
+    .serial
+    .addEventListener(
+      'disconnect',
+      () => {
+
+        if(port){
+
+          log(
+            'O dispositivo foi desconectado da porta serial.',
+            'err'
+          );
+
+          close();
+
+        }
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   SEND GENERATED COMMANDS
+========================================================= */
+
+$('send').onclick =
+  async () => {
+
+    if(
+      !port ||
+      !writer ||
+      !queue.length
+    ){
+
+      return;
+
+    }
+
+
+    const list =
+      [...queue];
+
+
+    $('send').disabled =
+      true;
+
+
+    try{
+
+      for(
+        let i=0;
+        i<list.length;
+        i++
+      ){
+
+        if(!port || !writer)
+          break;
+
+
+        const command =
+          list[i];
+
+
+        log(
+          '→ ' + command
+        );
+
+
+        /*
+         * Os comandos Queclink já possuem "$".
+         *
+         * Portanto NÃO adicionamos CRLF.
+         */
+
+        await writer.write(
+
+          new TextEncoder()
+            .encode(
+              command
+            )
+
+        );
+
+
+        /*
+         * Pausa entre comandos
+         * do kit.
+         */
+
+        if(
+          i <
+          list.length - 1
+        ){
+
+          await sleep(
+            1500
+          );
+
+        }
+
+      }
+
+
+      log(
+        'Comando enviado com sucesso.',
+        'ok'
+      );
+
+
+    }catch(error){
+
+      log(
+        'Falha ao enviar: ' +
+        error.message,
+        'err'
+      );
+
+    }
+
+
+    $('send').disabled =
+      !port ||
+      !queue.length;
+
+  };
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+setConnectedUI(
+  false
+);
+
+
+log(
+  'Painel iniciado.'
+);
+
+</script>
+
+</body>
+</html>
